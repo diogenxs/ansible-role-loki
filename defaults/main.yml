@@ -1,0 +1,36 @@
+---
+# loki version to install
+loki_version: 'latest'
+
+# loki bins to install
+loki_bins:
+  - loki
+  - logcli
+  - promtail
+
+loki_user: loki
+loki_group: loki
+loki_config_dir: /etc/loki
+
+loki_binary_local_dir: ''
+
+loki_target: all
+loki_auth_enabled: true
+
+loki_server_config:
+  http_listen_address: 0.0.0.0
+  http_listen_port: 80
+  grpc_listen_address: 0.0.0.0
+  grpc_listen_port: 9095
+
+loki_distributor_config: []
+loki_querier_config: []
+loki_ingester_client_config: []
+loki_ingester_config: []
+loki_storage_config: []
+loki_chunk_store_config: []
+loki_schema_config: []
+loki_limits_config: []
+loki_frontend_worker_config: []
+loki_table_manager_config: []
+loki_runtime_config: []
