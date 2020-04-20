@@ -70,13 +70,11 @@
 
 - name: create systemd service unit
   template:
-    src: loki.service.j2
-    dest: /etc/systemd/system/loki.service
+    src: "{{ item }}.service.j2"
+    dest: "/etc/systemd/system/{{ item }}.service"
     owner: root
     group: root
     mode: 0644
-  notify:
-    - restart loki
+  notify: "restart {{ item }}"
   loop: "{{ loki_bins }}"
-  when:
-    - item == 'loki'
+  when: item == 'loki' or item == 'promtail'
