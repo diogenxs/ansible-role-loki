@@ -11,3 +11,16 @@
   systemd:
     name: loki
     state: reloaded
+
+- name: restart promtail
+  become: true
+  systemd:
+    daemon_reload: true
+    name: promtail
+    state: restarted
+
+- name: reload promtail
+  become: true
+  systemd:
+    name: promtail
+    state: reloaded

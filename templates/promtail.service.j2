@@ -10,8 +10,8 @@ Environment="GOMAXPROCS={{ ansible_processor_vcpus|default(ansible_processor_cou
 User={{ loki_user }}
 Group={{ loki_group }}
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStart=/usr/local/bin/loki \
-  -config.file {{ loki_config_dir }}/loki.yml \
+ExecStart=/usr/local/bin/promtail \
+  -config.file {{ loki_config_dir }}/promtail.yml \
 
 CapabilityBoundingSet=CAP_SET_UID
 LimitNOFILE=65000
@@ -23,7 +23,6 @@ PrivateTmp=true
 ProtectHome=true
 RemoveIPC=true
 RestrictSUIDSGID=true
-
 
 SyslogIdentifier=loki
 Restart=always

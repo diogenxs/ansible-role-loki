@@ -4,44 +4,56 @@
 
 {% if loki_target != "" %}
 target: {{ loki_target }}
-{% endif %}}
+{% endif %}
 
 {% if loki_auth_enabled %}
 auth_enabled: {{ loki_auth_enabled }}
-{% endif %}}
+{% endif %}
 {% if loki_server_config != [] %}
-server: {{ loki_server_config }}
-{% endif %}}
+server:
+  {{ loki_server_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_distributor_config != [] %}
-distributor: {{ loki_distributor_config }}
-{% endif %}}
+distributor:
+  {{ loki_distributor_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_querier_config != [] %}
-querier: {{ loki_querier_config }}
-{% endif %}}
+querier:
+  {{ loki_querier_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_ingester_client_config != [] %}
-ingester_client: {{ loki_ingester_client_config }}
-{% endif %}}
+ingester_client:
+  {{ loki_ingester_client_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_ingester_config != [] %}
-ingester: {{ loki_ingester_config }}
-{% endif %}}
+ingester:
+  {{ loki_ingester_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_storage_config != [] %}
-storage_config: {{ loki_storage_config }}
-{% endif %}}
+storage_config:
+  {{ loki_storage_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_chunk_store_config != [] %}
-chunk_store_config: {{ loki_chunk_store_config }}
-{% endif %}}
+chunk_store_config:
+  {{ loki_chunk_store_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_schema_config != [] %}
-schema_config: {{ loki_schema_config }}
-{% endif %}}
+schema_config:
+  {{ loki_schema_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_limits_config != [] %}
-limits_config: {{ loki_limits_config }}
-{% endif %}}
+limits_config:
+  {{ loki_limits_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_frontend_worker_config != [] %}
-frontend_worker_config: {{ loki_frontend_worker_config }}
-{% endif %}}
+frontend_worker_config:
+  {{ loki_frontend_worker_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_table_manager_config != [] %}
-table_manager_config: {{ loki_table_manager_config }}
-{% endif %}}
+table_manager:
+  {{ loki_table_manager_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_runtime_config != [] %}
-runtime_config: {{ loki_runtime_config }}
-{% endif %}}
+runtime_config:
+  {{ loki_runtime_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
