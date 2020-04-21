@@ -5,6 +5,10 @@
 server:
   {{ promtail_server_config | to_nice_yaml(indent=2) | indent(2, False) }}
 {% endif %}
+{% if promtail_positions_config != [] %}
+positions:
+  {{ promtail_positions_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if promtail_client_config != [] %}
 clients:
   {{ promtail_client_config | to_nice_yaml(indent=2) | indent(2, False) }}

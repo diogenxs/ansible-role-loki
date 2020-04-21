@@ -17,12 +17,12 @@ loki_tags: []
 
 loki_listen_address: 127.0.0.1
 loki_listen_port: 3100
+promtail_listen_address: "{{ loki_listen_address }}"
 
 loki_binary_local_dir: ''
 
 loki_target: all
-loki_auth_enabled: false
-
+loki_auth_enabled: 'false'
 loki_server_config:
   http_listen_address: "{{ loki_listen_address }}"
   http_listen_port: "{{ loki_listen_port }}"
@@ -57,15 +57,19 @@ loki_schema_config:
     object_store: filesystem
     schema: v11
     index:
-      prefix: loki
+      prefix: index_
       period: 168h
 
     chunks:
-      prefix: loki
+      prefix: index_
       period: 168h
     row_shards: 16
 
-loki_limits_config: []
+loki_limits_config:
+  enforce_metric_name: false
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h
+
 loki_frontend_worker_config: []
 loki_runtime_config: []
 loki_table_manager_config:
@@ -87,27 +91,23 @@ promtail_client_config:
   - url: "http://{{ loki_listen_address }}:{{ loki_listen_port }}/loki/api/v1/push"
 
 promtail_server_config:
+  http_listen_address: "{{ promtail_listen_address }}"
   http_listen_port: 9080
+  grpc_listen_address: "{{ promtail_listen_address }}"
   grpc_listen_port: 0
 
 promtail_scrape_config:
-  - job_name: system
-    pipeline_stages:
-    static_configs:
-    - targets:
-        - localhost
-      labels:
-        job: varlogs
-        host: "{{ ansible_hostname }}"
-        __path__: /var/log/*.log
-
   - job_name: journal
     journal:
-      max_age: 12h
       labels:
         job: systemd-journal
+        host: "{{ ansible_hostname }}"
+      max_age: 12h
     relabel_configs:
-      - source_labels: ['__journal__systemd_unit']
-        target_label: 'unit'
+    - source_labels:
+      - __journal__systemd_unit
+      target_label: unit
 
 promtail_target_config: []
+promtail_positions_config:
+  filename: /tmp/positions.yaml
