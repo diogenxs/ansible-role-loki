@@ -13,7 +13,7 @@ Example Playbook
 
 Install Loki and Promtail in local machine
 
-```
+```yml
   - hosts: servers
     roles:
         - { role: diogenxs.loki, loki_bins: ['loki', 'promtail'] }
