@@ -48,7 +48,7 @@ loki_storage_config:
     directory: "{{ loki_storage_dir }}/chunks"
 
 loki_chunk_store_config:
-  max_look_back_period: 0
+  max_look_back_period: 0s
 
 loki_schema_config:
   configs:
@@ -73,16 +73,6 @@ loki_limits_config:
 loki_frontend_worker_config: []
 loki_runtime_config: []
 loki_table_manager_config:
-  chunk_tables_provisioning:
-    inactive_read_throughput: 0
-    inactive_write_throughput: 0
-    provisioned_read_throughput: 0
-    provisioned_write_throughput: 0
-  index_tables_provisioning:
-    inactive_read_throughput: 0
-    inactive_write_throughput: 0
-    provisioned_read_throughput: 0
-    provisioned_write_throughput: 0
   retention_deletes_enabled: false
   retention_period: 0
 
@@ -100,7 +90,7 @@ promtail_scrape_config:
   - job_name: journal
     journal:
       labels:
-        job: systemd-journal
+        job: node
         host: "{{ ansible_hostname }}"
       max_age: 12h
     relabel_configs:

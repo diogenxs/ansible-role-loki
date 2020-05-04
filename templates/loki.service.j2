@@ -11,20 +11,9 @@ User={{ loki_user }}
 Group={{ loki_group }}
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStart=/usr/local/bin/loki \
-  -config.file {{ loki_config_dir }}/loki.yml \
+  -config.file {{ loki_config_dir }}/loki.yml
 
-CapabilityBoundingSet=CAP_SET_UID
 LimitNOFILE=65000
-LockPersonality=true
-NoNewPrivileges=true
-MemoryDenyWriteExecute=true
-PrivateDevices=true
-PrivateTmp=true
-ProtectHome=true
-RemoveIPC=true
-RestrictSUIDSGID=true
-
-
 SyslogIdentifier=loki
 Restart=always
 

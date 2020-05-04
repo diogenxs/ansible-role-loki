@@ -5,12 +5,14 @@
     daemon_reload: true
     name: loki
     state: restarted
+  when: ('loki' in loki_bins)
 
 - name: reload loki
   become: true
   systemd:
     name: loki
     state: reloaded
+  when: ('loki' in loki_bins)
 
 - name: restart promtail
   become: true
@@ -18,9 +20,11 @@
     daemon_reload: true
     name: promtail
     state: restarted
+  when: ('promtail' in loki_bins)
 
 - name: reload promtail
   become: true
   systemd:
     name: promtail
     state: reloaded
+  when: ('promtail' in loki_bins)
