@@ -74,7 +74,7 @@ loki_frontend_worker_config: []
 loki_runtime_config: []
 loki_table_manager_config:
   retention_deletes_enabled: false
-  retention_period: 0
+  retention_period: 0s
 
 
 promtail_client_config:
