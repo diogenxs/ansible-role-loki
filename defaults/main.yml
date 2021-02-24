@@ -75,7 +75,7 @@ loki_runtime_config: []
 loki_table_manager_config:
   retention_deletes_enabled: false
   retention_period: 0s
-
+loki_ruler_config: {}
 
 promtail_client_config:
   - url: "http://{{ loki_listen_address }}:{{ loki_listen_port }}/loki/api/v1/push"
