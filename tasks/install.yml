@@ -38,7 +38,7 @@
     - "{{ loki_config_dir }}"
 
 - block:
-    - name: download binaries to local folder
+    - name: download binaries to a temporary folder
       become: false
       get_url:
         url: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/{{ item }}-linux-{{ go_arch }}.zip"
@@ -49,7 +49,6 @@
       retries: 5
       delay: 2
       loop: "{{ loki_bins }}"
-      delegate_to: localhost
       check_mode: false
 
     - name: unpack binaries
@@ -59,7 +58,6 @@
         dest: "/tmp"
         creates: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}"
       loop: "{{ loki_bins }}"
-      delegate_to: localhost
       check_mode: false
 
     - name: propagate official binaries
@@ -69,6 +67,7 @@
         mode: 0755
         owner: root
         group: root
+        remote_src: true
       loop: "{{ loki_bins }}"
       notify:
         - restart loki
