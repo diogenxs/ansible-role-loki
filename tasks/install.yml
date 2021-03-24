@@ -57,6 +57,7 @@
         src: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}.zip"
         dest: "/tmp"
         creates: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}"
+        remote_src: true
       loop: "{{ loki_bins }}"
       check_mode: false
 
