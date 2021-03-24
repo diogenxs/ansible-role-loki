@@ -3,6 +3,8 @@ Role Name
 
 Deploy and configure [Loki/Promtail](https://github.com/grafana/loki) using Ansible.
 
+This is a fork of a simple and extremely useful diogenxs.loki role.
+
 Requirements
 ------------
 
@@ -16,7 +18,9 @@ Install Loki and Promtail in local machine
 ```yml
   - hosts: servers
     roles:
-        - { role: diogenxs.loki, loki_bins: ['loki', 'promtail'] }
+        - role: diogenxs.loki
+          vars:
+            loki_bins: ['loki', 'promtail'] }
 ```
 
 License
@@ -27,4 +31,6 @@ WTFPL see [LICENSE](license)
 Author Information
 ------------------
 
-https://diogenxs.dev
+Fork maintainer: [weakcamel](https://galaxy.ansible.com/weakcamel)
+
+Original author (all credits due): https://diogenxs.dev
