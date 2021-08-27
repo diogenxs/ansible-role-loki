@@ -57,3 +57,7 @@ table_manager:
 runtime_config:
   {{ loki_runtime_config | to_nice_yaml(indent=2) | indent(2, False) }}
 {% endif %}
+{% if loki_ruler_config != [] %}
+ruler:
+  {{ loki_ruler_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}

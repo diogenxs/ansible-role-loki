@@ -5,6 +5,7 @@
     daemon_reload: true
     name: loki
     state: restarted
+    enabled: true
   when: ('loki' in loki_bins)
 
 - name: reload loki
@@ -20,6 +21,7 @@
     daemon_reload: true
     name: promtail
     state: restarted
+    enabled: true
   when: ('promtail' in loki_bins)
 
 - name: reload promtail
