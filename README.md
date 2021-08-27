@@ -1,5 +1,12 @@
-Role Name
-=========
+# Fork of [diogenxs/ansible-role-loki](https://github.com/diogenxs/ansible-role-loki)
+
+- Added enabling systemd service 
+- Added loki_ruler config
+
+---
+
+Ansible Role Loki
+=================
 
 Deploy and configure [Loki/Promtail](https://github.com/grafana/loki) using Ansible.
 
