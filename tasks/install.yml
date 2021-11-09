@@ -83,3 +83,10 @@
   notify: "restart {{ item }}"
   loop: "{{ loki_bins }}"
   when: item == 'loki' or item == 'promtail'
+
+- name: enable service
+  service:
+    name: "{{ item }}"
+    enabled: true
+  loop: "{{ loki_bins }}"
+  when: item == 'loki' or item == 'promtail'
