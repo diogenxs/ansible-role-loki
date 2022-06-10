@@ -52,18 +52,18 @@ loki_chunk_store_config:
 
 loki_schema_config:
   configs:
-  - from: 2020-01-01
-    store: boltdb
-    object_store: filesystem
-    schema: v11
-    index:
-      prefix: index_
-      period: 168h
+    - from: 2020-01-01
+      store: boltdb
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 168h
 
-    chunks:
-      prefix: index_
-      period: 168h
-    row_shards: 16
+      chunks:
+        prefix: index_
+        period: 168h
+      row_shards: 16
 
 loki_limits_config:
   enforce_metric_name: false
@@ -94,9 +94,9 @@ promtail_scrape_config:
         host: "{{ ansible_hostname }}"
       max_age: 12h
     relabel_configs:
-    - source_labels:
-      - __journal__systemd_unit
-      target_label: unit
+      - source_labels:
+          - __journal__systemd_unit
+        target_label: unit
 
 promtail_target_config: []
 promtail_positions_config:
