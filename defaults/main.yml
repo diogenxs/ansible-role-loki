@@ -76,6 +76,11 @@ loki_table_manager_config:
   retention_deletes_enabled: false
   retention_period: 0s
 loki_ruler_config: {}
+loki_query_scheduler: {}
+loki_query_range: {}
+
+# catch-all config option to be added "verbatim" to loki.yml
+loki_custom_config: {}
 
 promtail_client_config:
   - url: "http://{{ loki_listen_address }}:{{ loki_listen_port }}/loki/api/v1/push"

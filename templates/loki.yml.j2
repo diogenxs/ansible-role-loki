@@ -61,3 +61,14 @@ runtime_config:
 ruler:
   {{ loki_ruler_config | to_nice_yaml(indent=2) | indent(2, False) }}
 {% endif %}
+{% if loki_query_scheduler %}
+query_scheduler:
+  {{ loki_query_scheduler | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_query_range %}
+query_range:
+  {{ loki_query_range | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_custom_config %}
+{{ loki_custom_config | to_nice_yaml(indent=2) }}
+{% endif %}
