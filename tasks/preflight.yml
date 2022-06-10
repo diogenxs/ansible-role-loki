@@ -4,7 +4,8 @@
     that: ansible_service_mgr == 'systemd'
     msg: "This module only works with systemd"
 
-- block:
+- name: Get loki latest release
+  block:
     - name: Get latest release
       ansible.builtin.uri:
         url: "https://api.github.com/repos/grafana/loki/releases/latest"
@@ -27,7 +28,8 @@
     - loki_version == "latest"
     - loki_binary_local_dir | length == 0
 
-- block:
+- name: Load loki checksums
+  block:
     - name: Get checksum list
       ansible.builtin.set_fact:
         __loki_checksums: >-

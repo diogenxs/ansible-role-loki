@@ -37,7 +37,8 @@
   with_items:
     - "{{ loki_config_dir }}"
 
-- block:
+- name: retrieve Loki binaries
+  block:
     - name: download binaries to a temporary folder
       become: false
       ansible.builtin.get_url:
