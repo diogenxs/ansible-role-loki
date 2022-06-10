@@ -1,6 +1,6 @@
 ---
 - name: configure loki
-  template:
+  ansible.builtin.template:
     src: "loki.yml.j2"
     dest: "{{ loki_config_dir }}/loki.yml"
     force: true
@@ -12,7 +12,7 @@
   when: ('loki' in loki_bins)
 
 - name: configure promtail
-  template:
+  ansible.builtin.template:
     src: "promtail.yml.j2"
     dest: "{{ loki_config_dir }}/promtail.yml"
     force: true
