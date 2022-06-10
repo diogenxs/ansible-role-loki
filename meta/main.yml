@@ -5,7 +5,7 @@ galaxy_info:
   description: Deploy and configure Loki and Promtail.
   issue_tracker_url: https://github.com/weakcamel/ansible-role-loki/issues
   license: WTFPL
-  min_ansible_version: "2.9"
+  min_ansible_version: "3.0"
   platforms:
     - name: Ubuntu
       versions:

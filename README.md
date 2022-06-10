@@ -8,7 +8,7 @@ This is a fork of a simple and extremely useful diogenxs.loki role.
 Requirements
 ------------
 
-- Ansible >=  2.9
+- Ansible >= 3.0
 
 Example Playbook
 ------------
