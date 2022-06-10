@@ -45,6 +45,7 @@
         url: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/{{ item }}-linux-{{ go_arch }}.zip"
         dest: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}.zip"
         checksum: "sha256:{{ __loki_bins_checksum[item] }}"
+        mode: 0644
       register: _download_archive
       until: _download_archive is succeeded
       retries: 5
