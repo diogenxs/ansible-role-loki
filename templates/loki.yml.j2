@@ -1,6 +1,6 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 {{ ansible_managed | comment }}
-# https://github.com/grafana/loki/blob/master/docs/configuration/README.md#configuration-file-reference
+# https://grafana.com/docs/loki/latest/configuration/
 
 {% if loki_target != "" %}
 target: {{ loki_target }}
@@ -56,4 +56,19 @@ table_manager:
 {% if loki_runtime_config != [] %}
 runtime_config:
   {{ loki_runtime_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_ruler_config %}
+ruler:
+  {{ loki_ruler_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_query_scheduler %}
+query_scheduler:
+  {{ loki_query_scheduler | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_query_range %}
+query_range:
+  {{ loki_query_range | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
+{% if loki_custom_config %}
+{{ loki_custom_config | to_nice_yaml(indent=2) }}
 {% endif %}

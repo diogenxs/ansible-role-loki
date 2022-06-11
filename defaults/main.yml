@@ -52,18 +52,18 @@ loki_chunk_store_config:
 
 loki_schema_config:
   configs:
-  - from: 2020-01-01
-    store: boltdb
-    object_store: filesystem
-    schema: v11
-    index:
-      prefix: index_
-      period: 168h
+    - from: 2020-01-01
+      store: boltdb
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 168h
 
-    chunks:
-      prefix: index_
-      period: 168h
-    row_shards: 16
+      chunks:
+        prefix: index_
+        period: 168h
+      row_shards: 16
 
 loki_limits_config:
   enforce_metric_name: false
@@ -75,7 +75,12 @@ loki_runtime_config: []
 loki_table_manager_config:
   retention_deletes_enabled: false
   retention_period: 0s
+loki_ruler_config: {}
+loki_query_scheduler: {}
+loki_query_range: {}
 
+# catch-all config option to be added "verbatim" to loki.yml
+loki_custom_config: {}
 
 promtail_client_config:
   - url: "http://{{ loki_listen_address }}:{{ loki_listen_port }}/loki/api/v1/push"
@@ -94,9 +99,9 @@ promtail_scrape_config:
         host: "{{ ansible_hostname }}"
       max_age: 12h
     relabel_configs:
-    - source_labels:
-      - __journal__systemd_unit
-      target_label: unit
+      - source_labels:
+          - __journal__systemd_unit
+        target_label: unit
 
 promtail_target_config: []
 promtail_positions_config:
