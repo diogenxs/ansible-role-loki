@@ -1,11 +1,11 @@
 ---
-- name: create {{ loki_group }} system group
+- name: Create system group {{ loki_group }}
   ansible.builtin.group:
     name: "{{ loki_group }}"
     system: true
     state: present
 
-- name: create {{ loki_user }} system user
+- name: Create system user {{ loki_user }}
   ansible.builtin.user:
     name: "{{ loki_user }}"
     system: true
@@ -14,7 +14,7 @@
     createhome: false
     home: "{{ loki_storage_dir }}"
 
-- name: create loki data directory
+- name: Create loki data directory
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -27,7 +27,7 @@
     - "{{ loki_storage_dir }}/chunks"
   when: ('loki' in loki_bins)
 
-- name: create loki configuration directories
+- name: Create loki configuration directories
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -37,9 +37,9 @@
   with_items:
     - "{{ loki_config_dir }}"
 
-- name: retrieve Loki binaries
+- name: Retrieve Loki binaries
   block:
-    - name: download binaries to a temporary folder
+    - name: Download binaries to a temporary folder
       become: false
       ansible.builtin.get_url:
         url: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/{{ item }}-linux-{{ go_arch }}.zip"
@@ -53,7 +53,7 @@
       loop: "{{ loki_bins }}"
       check_mode: false
 
-    - name: unpack binaries
+    - name: Unpack binaries
       become: false
       ansible.builtin.unarchive:
         src: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}.zip"
@@ -63,7 +63,7 @@
       loop: "{{ loki_bins }}"
       check_mode: false
 
-    - name: propagate official binaries
+    - name: Propagate official binaries
       ansible.builtin.copy:
         src: "/tmp/{{ item }}-linux-{{ go_arch }}"
         dest: "/usr/local/bin/{{ item }}"
@@ -73,15 +73,15 @@
         remote_src: true
       loop: "{{ loki_bins }}"
       notify:
-        - restart loki
+        - Restart loki
 
-- name: create systemd service unit
+- name: Create systemd service unit
   ansible.builtin.template:
     src: "{{ item }}.service.j2"
     dest: "/etc/systemd/system/{{ item }}.service"
     owner: root
     group: root
     mode: 0644
-  notify: "restart {{ item }}"
+  notify: "Restart {{ item }}"
   loop: "{{ loki_bins }}"
   when: item == 'loki' or item == 'promtail'

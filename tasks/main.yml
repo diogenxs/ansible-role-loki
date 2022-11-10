@@ -1,17 +1,17 @@
 ---
 - name: Pre-flight tasks
-  import_tasks: preflight.yml
+  ansible.builtin.import_tasks: preflight.yml
   tags:
     - loki_pre_install
 
 - name: Installation tasks
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   become: true
   tags:
     - loki_configure
 
 - name: Configuration tasks
-  import_tasks: configure.yml
+  ansible.builtin.import_tasks: configure.yml
   become: true
   tags:
     - loki_configure

@@ -1,5 +1,5 @@
 ---
-- name: configure loki
+- name: Configure loki
   ansible.builtin.template:
     src: "loki.yml.j2"
     dest: "{{ loki_config_dir }}/loki.yml"
@@ -8,10 +8,10 @@
     group: "{{ loki_user }}"
     mode: 0640
   notify:
-    - reload loki
+    - Reload loki
   when: ('loki' in loki_bins)
 
-- name: configure promtail
+- name: Configure promtail
   ansible.builtin.template:
     src: "promtail.yml.j2"
     dest: "{{ loki_config_dir }}/promtail.yml"
@@ -20,5 +20,5 @@
     group: "{{ loki_user }}"
     mode: 0640
   notify:
-    - reload promtail
+    - Reload promtail
   when: ('promtail' in loki_bins)
