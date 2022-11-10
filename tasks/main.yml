@@ -1,14 +1,17 @@
 ---
-- include: preflight.yml
+- name: Pre-flight tasks
+  import_tasks: preflight.yml
   tags:
     - loki_pre_install
 
-- include: install.yml
+- name: Installation tasks
+  import_tasks: install.yml
   become: true
   tags:
     - loki_configure
 
-- include: configure.yml
+- name: Configuration tasks
+  import_tasks: configure.yml
   become: true
   tags:
     - loki_configure
