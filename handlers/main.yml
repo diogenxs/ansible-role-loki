@@ -1,5 +1,5 @@
 ---
-- name: restart loki
+- name: Restart loki
   become: true
   ansible.builtin.systemd:
     daemon_reload: true
@@ -7,14 +7,14 @@
     state: restarted
   when: ('loki' in loki_bins)
 
-- name: reload loki
+- name: Reload loki
   become: true
   ansible.builtin.systemd:
     name: loki
     state: reloaded
   when: ('loki' in loki_bins)
 
-- name: restart promtail
+- name: Restart promtail
   become: true
   ansible.builtin.systemd:
     daemon_reload: true
@@ -22,7 +22,7 @@
     state: restarted
   when: ('promtail' in loki_bins)
 
-- name: reload promtail
+- name: Reload promtail
   become: true
   ansible.builtin.systemd:
     name: promtail
