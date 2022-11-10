@@ -2,6 +2,7 @@
 galaxy_info:
   author: Waldek Maleska
   role_name: loki
+  namespace: weakcamel
   description: Deploy and configure Loki and Promtail.
   issue_tracker_url: https://github.com/weakcamel/ansible-role-loki/issues
   license: WTFPL
