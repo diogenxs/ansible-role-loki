@@ -37,6 +37,10 @@
   with_items:
     - "{{ loki_config_dir }}"
 
+- name: Ensuring the unzip package is installed
+  ansible.builtin.package:
+    name: unzip
+
 - name: Retrieve Loki binaries
   block:
     - name: Download binaries to a temporary folder
