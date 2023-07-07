@@ -30,7 +30,7 @@
 - block:
     - name: Get checksum list
       set_fact:
-        __loki_checksums: "{{ lookup('url', 'https://github.com/grafana/loki/releases/download/v' + loki_version + '/SHA256SUMS', wantlist=True) | list }}"
+        __loki_checksums: "{{ lookup('url', 'https://github.com/grafana/loki/releases/download/v' + loki_version + '/SHA256SUMS', wantlist=True, follow_redirects='yes') | list }}"
       run_once: true
 
     - name: Get checksum for bins
