@@ -20,7 +20,7 @@
     state: directory
     owner: loki
     group: loki
-    mode: 0755
+    mode: "0755"
   with_items:
     - "{{ loki_storage_dir }}"
     - "{{ loki_storage_dir }}/index"
@@ -33,7 +33,7 @@
     state: directory
     owner: root
     group: "{{ loki_group }}"
-    mode: 0770
+    mode: "0770"
   with_items:
     - "{{ loki_config_dir }}"
 
@@ -49,7 +49,7 @@
         url: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/{{ item }}-linux-{{ go_arch }}.zip"
         dest: "/tmp/{{ item }}-{{ loki_version }}-linux-{{ go_arch }}.zip"
         checksum: "sha256:{{ __loki_bins_checksum[item] }}"
-        mode: 0644
+        mode: "0644"
       register: _download_archive
       until: _download_archive is succeeded
       retries: 5
@@ -71,7 +71,7 @@
       ansible.builtin.copy:
         src: "/tmp/{{ item }}-linux-{{ go_arch }}"
         dest: "/usr/local/bin/{{ item }}"
-        mode: 0755
+        mode: "0755"
         owner: root
         group: root
         remote_src: true
@@ -85,7 +85,7 @@
     dest: "/etc/systemd/system/{{ item }}.service"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: "Restart {{ item }}"
   loop: "{{ loki_bins }}"
   when: item == 'loki' or item == 'promtail'

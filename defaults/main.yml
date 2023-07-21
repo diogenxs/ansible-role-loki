@@ -65,6 +65,8 @@ loki_schema_config:
         period: 168h
       row_shards: 16
 
+loki_compactor_config: {}
+
 loki_limits_config:
   enforce_metric_name: false
   reject_old_samples: true
