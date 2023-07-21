@@ -53,6 +53,10 @@ frontend_worker_config:
 table_manager:
   {{ loki_table_manager_config | to_nice_yaml(indent=2) | indent(2, False) }}
 {% endif %}
+{% if loki_compactor_config %}
+compactor:
+  {{ loki_compactor_config | to_nice_yaml(indent=2) | indent(2, False) }}
+{% endif %}
 {% if loki_runtime_config != [] %}
 runtime_config:
   {{ loki_runtime_config | to_nice_yaml(indent=2) | indent(2, False) }}

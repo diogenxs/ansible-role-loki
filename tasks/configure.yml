@@ -6,7 +6,8 @@
     force: true
     owner: root
     group: "{{ loki_user }}"
-    mode: 0640
+    mode: "0640"
+    backup: true
   notify:
     - Reload loki
   when: ('loki' in loki_bins)
@@ -18,7 +19,7 @@
     force: true
     owner: root
     group: "{{ loki_user }}"
-    mode: 0640
+    mode: "0640"
   notify:
     - Reload promtail
   when: ('promtail' in loki_bins)
